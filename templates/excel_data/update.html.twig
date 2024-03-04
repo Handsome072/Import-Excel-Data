@@ -1,0 +1,175 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Modification
+{% endblock %}
+{% block body %}
+
+	<div class="banner-content">
+		<div class="container-fluid bg">
+			<div class="row">
+
+				<div class="col-md-6 offset-md-3 bg-white mt-5 p-3 pt-4 rounded-3">
+					<h3 class="fw-bold text-center">Modification du compte</h3>
+					{{form_start(updateExcelData) }}
+					<div class="mb-3">
+						{{form_label(updateExcelData.cmpt_affaire , "Compte Affaire:") }}
+						{{form_widget(updateExcelData.cmpt_affaire , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.cmpt_event , "Compte évènement (Veh):") }}
+						{{form_widget(updateExcelData.cmpt_event , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.cmpt_dernier_event , "Compte dernier évènement (Veh):") }}
+						{{form_widget(updateExcelData.cmpt_dernier_event , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.num_fiche , "Numéro de fiche:") }}
+						{{form_widget(updateExcelData.num_fiche , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.libelle_civilite , "Libellé civilité:") }}
+						{{form_widget(updateExcelData.libelle_civilite , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.prop_actuel_vehicule , "Propriétaire actuel du véhicule:") }}
+						{{form_widget(updateExcelData.prop_actuel_vehicule, {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.nom, "Nom:") }}
+						{{form_widget(updateExcelData.nom , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.prenom , "Prénom:") }}
+						{{form_widget(updateExcelData.prenom, {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.num_nom_voie, "N° et Nom de la voie:") }}
+						{{form_widget(updateExcelData.num_nom_voie, {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.complement_adresse_1 , "Complément adresse 1") }}
+						{{form_widget(updateExcelData.complement_adresse_1 , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.code_postal , "Code postal:") }}
+						{{form_widget(updateExcelData.code_postal , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.ville , "Ville:") }}
+						{{form_widget(updateExcelData.ville , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.tel_domicile , "Téléphone domicile:") }}
+						{{form_widget(updateExcelData.tel_domicile , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.tel_portable, "Téléphone portable:") }}
+						{{form_widget(updateExcelData.tel_portable , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.tel_job, "Téléphone job:") }}
+						{{form_widget(updateExcelData.tel_job, {'attr':{'class':'form-control'} } ) }}
+					</div>
+
+					<div class="mb-3">
+						{{form_label(updateExcelData.email , "Email:") }}
+						{{form_widget(updateExcelData.email, {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.date_mise_circulation , "Date de mise en circulation:") }}
+						{{ form_widget(updateExcelData.date_mise_circulation, {'attr':{'class':'form-control'}, } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.date_achat , "Date achat (date de livraison):") }}
+						{{form_widget(updateExcelData.date_achat , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.date_dernier_event , "Date dernier évènement (Veh):") }}
+						{{form_widget(updateExcelData.date_dernier_event , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.libelle_marque, "Libellé marque (Mrq):") }}
+						{{form_widget(updateExcelData.libelle_marque , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.libelle_modele, "Libellé modèle (Mod):") }}
+						{{form_widget(updateExcelData.libelle_modele , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.version, "Version:") }}
+						{{form_widget(updateExcelData.version , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.vin, "VIN:") }}
+						{{form_widget(updateExcelData.vin , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.immatriculation , "Immatriculation:") }}
+						{{form_widget(updateExcelData.immatriculation, {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.type_prospect, "Type de prospect:") }}
+						{{form_widget(updateExcelData.type_prospect , {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.kilometrage, "Kilométrage:") }}
+						{{form_widget(updateExcelData.kilometrage, {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.energie, "Libellé énergie (Energ):") }}
+						{{form_widget(updateExcelData.energie, {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.vendeur_vn, "Vendeur VN:") }}
+						{{form_widget(updateExcelData.vendeur_vn, {'attr':{'class':'form-control'} } ) }}
+					</div>
+
+					<div class="mb-3">
+						{{form_label(updateExcelData.vendeur_vo, "Vendeur VO:") }}
+						{{form_widget(updateExcelData.vendeur_vo, {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.commentaire_facturation , "Commentaire de facturation (Veh):") }}
+						{{form_widget(updateExcelData.commentaire_facturation, {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-3">
+						{{form_label(updateExcelData.type_vn_vo , "Type VN VO:") }}
+						{{form_widget(updateExcelData.type_vn_vo, {'attr':{'class':'form-control'} } ) }}
+					</div>
+
+					<div class="mb-3">
+						{{form_label(updateExcelData.num_vn_vo , "Numéro de dossier VN VO:") }}
+						{{form_widget(updateExcelData.num_vn_vo, {'attr':{'class':'form-control'} } ) }}
+					</div>
+
+					<div class="mb-3">
+						{{form_label(updateExcelData.intermediaire_vente_vn , "Intermediaire de vente VN:") }}
+						{{form_widget(updateExcelData.intermediaire_vente_vn, {'attr':{'class':'form-control'} } ) }}
+					</div>
+
+					<div class="mb-3">
+						{{form_label(updateExcelData.date_evenement, "Date évènement (Veh):") }}
+						{{form_widget(updateExcelData.date_evenement, {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-5">
+						{{form_label(updateExcelData.origine_evenement, "Origine évènement (Veh):") }}
+						{{form_widget(updateExcelData.origine_evenement, {'attr':{'class':'form-control'} } ) }}
+					</div>
+					<div class="mb-5 pb-3 pe-2">
+						<button class="btn btn-primary float-end">Enregistrer</button>
+					</div>
+
+					{{form_end(updateExcelData) }}
+
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+
+
+{% endblock  %}

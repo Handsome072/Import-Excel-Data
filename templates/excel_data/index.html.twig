@@ -1,0 +1,401 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Affichage
+{% endblock %}
+
+{% block body %}
+	<div class="banner">
+		<div class="container-fluid bg">
+			<div class="row">
+				{% if not data %}
+					<div class="row mt-5 pt-5 ">
+						<div class=" profile m-auto mt-5 p-3 pt-5 pb-5 rounded-3 col-md-4 bg-dark text-center text-white  ">
+							<img src='/images/Andson.png' class="img-fluid" alt="Andson_Profile">
+							<h1 class="mt-4 mb-4">Veuillez importer votre fichier</h1>
+							<div>
+								{{ form_start(form) }}
+								{{ form_widget(form) }}
+							</div>
+							<button type="submit" class="btn btn-primary mt-5 mb-5">Importer</button>
+							{{ form_end(form) }}
+						</div>
+					</div>
+				{% endif %}
+				{% if data %}
+					<div class="col-md-11 m-auto bg-content mt-5 p-3">
+						<h2 class="text-center text-white fw-bold mt-4 mb-3">Affichage des résultats</h2>
+						<div class="row">
+							<div class="offset-md-9 col-md-3">
+								<form id="searchForm">
+									<div class="input-group mb-3">
+										<input type="text" class="form-control" placeholder="Recherche..." id="searchInput">
+										<button class="btn btn-primary" type="submit">Rechercher</button>
+									</div>
+								</form>
+								<div id="noResultsMessage" class="text-end pe-5 text-white" style="display: none;">
+									<p>Pas de résultats.</p>
+								</div>
+							</div>
+						</div>
+						<div class="table-container mb-5 pb-4">
+							<table id="excelTable" class="table table-dark table-striped table-hover">
+								<thead>
+									<tr>
+										<div class="row mb-2">
+											<div class="col-md-6">
+												<a href="#" id="prevButton" class="btn btn-success">
+													<i class="fa fa-arrow-left"></i>
+												</a>
+											</div>
+											<div class="col-md-6 text-end">
+												<a href="#" id="nextButton" class="btn btn-success">
+													<i class="fa fa-arrow-right"></i>
+												</a>
+											</div>
+										</div>
+										<th>
+											Compte Affaire
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+
+										</th>
+										<th>
+											Compte évènement
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+
+										</th>
+										<th>
+											Compte dernier évènement
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Num Fiche
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+
+										</th>
+										<th>Libellé civilité
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+
+										</th>
+										<th>
+											Propriétaire du véhicule
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+
+										</th>
+										<th>
+											Nom
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+
+										</th>
+										<th>
+											Prénom
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											N° et Nom de la voie
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Complément Adresse 1
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Code Postal
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>Ville
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Téléphone domicile
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Téléphone portable
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Téléphone job
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Email
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Date de mise en circulation
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Date achat (date de livraison)
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Date dernier évènement (Veh)
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Libellé marque (Mrq)
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Libellé modèle (Mod)
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Version
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											VIN
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Immatriculation
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Type de prospect
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Kilométrage
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Libellé énergie (Energ)
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Vendeur VN
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Vendeur VO
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Commentaire de facturation (Veh)
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Type VN/VO
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Numéro de dossier VN
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Intermediaire Vente VN
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Date évènement (Veh)
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+										<th>
+											Origine évènement (Veh)
+											<div class="icone col-md-1">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</div>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% set itemsPerPage = 10 %}
+									{% set currentPage = app.request.query.get('page', 1) %}
+									{% set start = (currentPage - 1) * itemsPerPage %}
+									{% set end = start + itemsPerPage %}
+									{% for excelData in data|slice(start, itemsPerPage) %}
+										<tr>
+											<td>{{ excelData.getCmptAffaire() }}</td>
+											<td>{{ excelData.getCmptEvent() }}</td>
+											<td>{{ excelData.getCmptDernierEvent() }}</td>
+											<td>{{ excelData.getNumFiche() }}</td>
+											<td>{{ excelData.getLibelleCivilite() }}</td>
+											<td>{{ excelData.getPropActuelVehicule() }}</td>
+											<td>{{ excelData.getNom() }}</td>
+											<td>{{ excelData.getPrenom() }}</td>
+											<td>{{ excelData.getNumNomVoie() }}</td>
+											<td>{{ excelData.getComplementAdresse1() }}</td>
+											<td>{{ excelData.getCodePostal() }}</td>
+											<td>{{ excelData.getVille() }}</td>
+											<td>{{ excelData.getTelDomicile() ? '0' ~ excelData.getTelDomicile() : '' }}</td>
+											<td>{{ excelData.getTelPortable() ? '0' ~ excelData.getTelPortable() : '' }}</td>
+											<td>{{ excelData.getTelJob() ? '0' ~ excelData.getTelJob() : '' }}</td>
+											<td>{{ excelData.getEmail() }}</td>
+											<td>{{ excelData.getDateMiseCirculation() ? excelData.getDateMiseCirculation()|date('d/m/Y') : '' }}</td>
+											<td>{{ excelData.getDateAchat() ? excelData.getDateAchat()|date('d/m/Y') : '' }}</td>
+											<td>{{ excelData.getDateDernierEvent() ? excelData.getDateDernierEvent()|date('d/m/Y') : '' }}</td>
+											<td>{{ excelData.getLibelleMarque() }}</td>
+											<td>{{ excelData.getLibelleModele() }}</td>
+											<td>{{ excelData.getVersion() }}</td>
+											<td>{{ excelData.getVin() }}</td>
+											<td>{{ excelData.getImmatriculation() }}</td>
+											<td>{{ excelData.getTypeProspect() }}</td>
+											<td>{{ excelData.getKilometrage() ? excelData.getKilometrage() : '' }}</td>
+											<td>{{ excelData.getEnergie() }}</td>
+											<td>{{ excelData.getVendeurVn() }}</td>
+											<td>{{ excelData.getVendeurVo() }}</td>
+											<td>{{ excelData.getCommentaireFacturation() }}</td>
+											<td>{{ excelData.getTypeVnVo() }}</td>
+											<td>{{ excelData.getNumVnVo() }}</td>
+											<td>{{ excelData.getIntermediaireVenteVn() }}</td>
+											<td>{{ excelData.getDateEvenement() ? excelData.getDateEvenement()|date('d/m/Y') : '' }}</td>
+											<td>{{ excelData.getOrigineEvenement() }}</td>
+											<td class="actions-column">
+												<div class="float-end">
+													<a href={{ path('app_excel_data_update', {'id': excelData.id} ) }} class="btn btn-success me-2">
+														<i class="fa fa-edit"></i>
+													</a>
+													<a href={{ path('app_excel_data_delete', {'id': excelData.id} ) }} class="btn btn-danger">
+														<i class="fa fa-trash"></i>
+													</a>
+												</div>
+
+											</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+							<div class="float-end">
+								<a href={{ path('app_excel_add')}} class="btn btn-light me-2">Ajouter nouveau</a>
+							</div>
+						</div>
+
+						<!-- Pagination -->
+						<div class="ps-3">
+							{% if data|length > itemsPerPage %}
+								<nav aria-label="...">
+									<ul class="pagination">
+										{% set totalPages = (data|length / itemsPerPage)|round(0, 'ceil') %}
+										{% set previousPage = currentPage > 1 ? currentPage - 1 : 1 %}
+										{% set nextPage = currentPage < totalPages ? currentPage + 1 : totalPages %}
+										<li class="page-item {{ currentPage == 1 ? 'disabled' }}">
+											<a class="page-link" href="{{ path('app_excel_data', {'page': previousPage}) }}" tabindex="-1" aria-disabled="{{ currentPage == 1 }}">Prev</a>
+										</li>
+										{% for page in 1..totalPages %}
+											<li class="page-item {{ currentPage == page ? 'active' }}">
+												<a class="page-link" href="{{ path('app_excel_data', {'page': page}) }}">{{ page }}</a>
+											</li>
+										{% endfor %}
+										<li class="page-item {{ currentPage == totalPages ? 'disabled' }}">
+											<a class="page-link" href="{{ path('app_excel_data', {'page': nextPage}) }}">Suiv</a>
+										</li>
+									</ul>
+								</nav>
+							{% endif %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="{{asset('js/main.js')}}"></script>
+
+{% endblock %}
