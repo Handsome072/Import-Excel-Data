@@ -8,9 +8,9 @@
 	<div class="banner-content">
 		<div class="container-fluid bg">
 			<div class="row">
-
 				<div class="col-md-6 offset-md-3 bg-white mt-5 p-3 pt-4 rounded-3">
 					<h3 class="fw-bold text-center">Modification du compte</h3>
+
 					{{form_start(updateExcelData) }}
 					<div class="mb-3">
 						{{form_label(updateExcelData.cmpt_affaire , "Compte Affaire:") }}
@@ -72,7 +72,6 @@
 						{{form_label(updateExcelData.tel_job, "Téléphone job:") }}
 						{{form_widget(updateExcelData.tel_job, {'attr':{'class':'form-control'} } ) }}
 					</div>
-
 					<div class="mb-3">
 						{{form_label(updateExcelData.email , "Email:") }}
 						{{form_widget(updateExcelData.email, {'attr':{'class':'form-control'} } ) }}
@@ -138,17 +137,14 @@
 						{{form_label(updateExcelData.type_vn_vo , "Type VN VO:") }}
 						{{form_widget(updateExcelData.type_vn_vo, {'attr':{'class':'form-control'} } ) }}
 					</div>
-
 					<div class="mb-3">
 						{{form_label(updateExcelData.num_vn_vo , "Numéro de dossier VN VO:") }}
 						{{form_widget(updateExcelData.num_vn_vo, {'attr':{'class':'form-control'} } ) }}
 					</div>
-
 					<div class="mb-3">
 						{{form_label(updateExcelData.intermediaire_vente_vn , "Intermediaire de vente VN:") }}
 						{{form_widget(updateExcelData.intermediaire_vente_vn, {'attr':{'class':'form-control'} } ) }}
 					</div>
-
 					<div class="mb-3">
 						{{form_label(updateExcelData.date_evenement, "Date évènement (Veh):") }}
 						{{form_widget(updateExcelData.date_evenement, {'attr':{'class':'form-control'} } ) }}
@@ -160,16 +156,10 @@
 					<div class="mb-5 pb-3 pe-2">
 						<button class="btn btn-primary float-end">Enregistrer</button>
 					</div>
-
 					{{form_end(updateExcelData) }}
 
 				</div>
-
-
 			</div>
-
 		</div>
 	</div>
-
-
 {% endblock  %}
