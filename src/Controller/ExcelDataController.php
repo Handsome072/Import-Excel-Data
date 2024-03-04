@@ -22,124 +22,117 @@ class ExcelDataController extends AbstractController
         $form = $this->createFormBuilder()
             ->add('excel_file', FileType::class)
             ->getForm();
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $uploadedFile = $form->get('excel_file')->getData();
-
             if ($uploadedFile) {
                 $reader = new Xlsx();
                 $spreadsheet = $reader->load($uploadedFile->getPathname());
                 $sheet = $spreadsheet->getActiveSheet();
                 $data = $sheet->toArray();
                 $entityManager = $this->getDoctrine()->getManager();
-
+        
                 foreach ($data as $key => $col) {
                     if ($key > 0) {
-                    $excelData = new ExcelData();
-                    $excelData->setCmptAffaire($col[0]);
-                    if ($col[1] !== null) {
-                        $excelData->setCmptEvent($col[1]);
-                    } 
-                   
-                    if ($col[2] !== null) {
-                        $excelData->setCmptDernierEvent($col[2]);
-                    } 
-                    $excelData->setNumFiche(intval($col[3]));
-                    $excelData->setLibelleCivilite($col[4]);
-                    $excelData->setPropActuelVehicule($col[5]);
-                    if ($col[6] !== null) {
-                        $excelData->setNom($col[6]);
-                    } 
-                   
-                    $excelData->setPrenom($col[7]);
-                    if ($col[8] !== null) {
-                        $excelData->setNumNomVoie($col[8]);
-                    } 
-                    $excelData->setComplementAdresse1($col[9]);
-                    $excelData->setCodePostal(intval($col[10]));
-                    if ($col[11] !== null) {
-                        $excelData->setVille($col[11]);
-                    } 
-                    $telDomicile = null;
-                    $telPortable = null;
-                    $telJob = null;
-                    
-                    if (!empty($col[12])) {
-                        $telDomicile = (int)$col[12];
+                        $excelData = new ExcelData();
+                        $excelData->setCmptAffaire($col[0]);
+                        if ($col[1] !== null) {
+                            $excelData->setCmptEvent($col[1]);
+                        }
+                        if ($col[2] !== null) {
+                            $excelData->setCmptDernierEvent($col[2]);
+                        }
+                        $excelData->setNumFiche(intval($col[3]));
+                        $excelData->setLibelleCivilite($col[4]);
+                        $excelData->setPropActuelVehicule($col[5]);
+                        if ($col[6] !== null) {
+                            $excelData->setNom($col[6]);
+                        }
+                        $excelData->setPrenom($col[7]);
+                        if ($col[8] !== null) {
+                            $excelData->setNumNomVoie($col[8]);
+                        }
+                        $excelData->setComplementAdresse1($col[9]);
+                        $excelData->setCodePostal(intval($col[10]));
+                        if ($col[11] !== null) {
+                            $excelData->setVille($col[11]);
+                        }
+                        $telDomicile = null;
+                        $telPortable = null;
+                        $telJob = null;
+                        if (!empty($col[12])) {
+                            $telDomicile = (int)$col[12];
+                        }
+        
+                        if (!empty($col[13])) {
+                            $telPortable = (int)$col[13];
+                        }
+        
+                        if (!empty($col[14])) {
+                            $telJob = (int)$col[14];
+                        }
+                        $excelData->setTelDomicile($telDomicile);
+                        $excelData->setTelPortable($telPortable);
+                        $excelData->setTelJob($telJob);
+                        $excelData->setEmail($col[15]);
+                        $dateMiseCirculation = null;
+                        $dateAchat = null;
+                        $dateDernierEvent = null;
+                        if (!empty($col[16])) {
+                            $date1 = str_replace(" ", "", $col[16]);
+                            $dateMiseCirculation = new DateTime($date1);
+                        }
+        
+                        if (!empty($col[17])) {
+                            $date2 = str_replace(" ", "", $col[17]);
+                            $dateAchat = new DateTime($date2);
+                        }
+        
+                        if (!empty($col[18])) {
+                            $date3 = str_replace(" ", "", $col[18]);
+                            $dateDernierEvent = new DateTime($date3);
+                        }
+        
+                        $excelData->setDateMiseCirculation($dateMiseCirculation);
+                        $excelData->setDateAchat($dateAchat);
+                        $excelData->setDateDernierEvent($dateDernierEvent);
+        
+                        if ($col[19] !== null) {
+                            $excelData->setLibelleMarque($col[19]);
+                        }
+                        $excelData->setLibelleModele($col[20]);
+                        $excelData->setVersion($col[21]);
+                        if ($col[22] !== null) {
+                            $excelData->setVin($col[22]);
+                        }
+                        $excelData->setImmatriculation($col[23]);
+                        if ($col[24] !== null) {
+                            $excelData->setTypeProspect($col[24]);
+                        }
+                        $excelData->setKilometrage(intval($col[25]));
+                        $excelData->setEnergie($col[26]);
+                        $excelData->setVendeurVn($col[27]);
+                        $excelData->setVendeurVo($col[28]);
+                        $excelData->setCommentaireFacturation($col[29]);
+                        $excelData->setTypeVnVo($col[30]);
+                        $excelData->setNumVnVo($col[31]);
+                        $excelData->setIntermediaireVenteVn($col[32]);
+                        $dateEvenement = null;
+                        if (!empty($col[33])) {
+                            $date4 = str_replace(" ", "", $col[33]);
+                            $dateEvenement = new DateTime($date4);
+                        }
+                        $excelData->setDateEvenement($dateEvenement);
+                        if ($col[34] !== null) {
+                            $excelData->setOrigineEvenement($col[34]);
+                        }
+                        $entityManager->persist($excelData);
                     }
-                    
-                    if (!empty($col[13])) {
-                        $telPortable = (int)$col[13];
-                    }
-                    
-                    if (!empty($col[14])) {
-                        $telJob = (int)$col[14];
-                    }
-                    
-                    $excelData->setTelDomicile($telDomicile);
-                    $excelData->setTelPortable($telPortable);
-                    $excelData->setTelJob($telJob);
-                    
-                    $excelData->setEmail($col[15]);
-                 $dateMiseCirculation = null;
-                 $dateAchat = null;
-                 $dateDernierEvent = null;
-                 
-                 if (!empty($col[16])) {
-                     $date1 = str_replace(" ", "", $col[16]);
-                     $dateMiseCirculation = new DateTime($date1);
-                 }
-                 
-                 if (!empty($col[17])) {
-                     $date2 = str_replace(" ", "", $col[17]);
-                     $dateAchat = new DateTime($date2);
-                 }
-                 
-                 if (!empty($col[18])) {
-                     $date3 = str_replace(" ", "", $col[18]);
-                     $dateDernierEvent = new DateTime($date3);
-                 }
-                 
-                 $excelData->setDateMiseCirculation($dateMiseCirculation);
-                 $excelData->setDateAchat($dateAchat);
-                 $excelData->setDateDernierEvent($dateDernierEvent);
-               if ($col[19] !== null) {
-                    $excelData->setLibelleMarque($col[19]);
-                     } 
-                    $excelData->setLibelleModele($col[20]);
-                    $excelData->setVersion($col[21]);
-                    if ($col[22] !== null) {
-                        $excelData->setVin($col[22]);
-                    }              
-                    $excelData->setImmatriculation($col[23]);
-                    if ($col[24] !== null) {
-                    $excelData->setTypeProspect($col[24]);
-                    }  
-                    $excelData->setKilometrage(intval($col[25]));
-                    $excelData->setEnergie($col[26]);
-                    $excelData->setVendeurVn($col[27]);
-                    $excelData->setVendeurVo($col[28]);
-                    $excelData->setCommentaireFacturation($col[29]);
-                    $excelData->setTypeVnVo($col[30]);
-                    $excelData->setNumVnVo($col[31]);
-                    $excelData->setIntermediaireVenteVn($col[32]);
-                    $dateEvenement = null;
-                    if (!empty($col[33])) {
-                        $date4 = str_replace(" ", "", $col[33]);
-                        $dateEvenement = new DateTime($date4);
-                    }
-                    $excelData->setDateEvenement($dateEvenement);
-                    if ($col[34] !== null) {
-                     $excelData->setOrigineEvenement($col[34]);
-                    }
-                    $entityManager->persist($excelData);
                 }
                 $entityManager->flush();
             }
-           }
         }
-
+        
         $excelDataRepository = $this->getDoctrine()->getRepository(ExcelData::class);
         $allExcelData = $excelDataRepository->findAll();
         return $this->render('excel_data/index.html.twig', [
@@ -238,7 +231,7 @@ class ExcelDataController extends AbstractController
           $excelData =  $entityManager->getRepository(ExcelData::class)->find($id);
           $entityManager->remove($excelData);
           $entityManager->flush();
-          
+
     return $this->redirectToRoute('app_excel_data');
   }
 }
